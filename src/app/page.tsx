@@ -35,14 +35,14 @@ export default function HomePage(): React.JSX.Element {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#9E1B1B]">
-              Infraestructura Operativa
+              Infraestructura Operativa Real
             </span>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
               Planta Industrial Km 76 Carretera Cusco–Sicuani
             </h2>
             <p className="mt-4 text-stone-600 text-sm sm:text-base leading-relaxed">
               Equipada con molinos de cilindros sincrónicos, extrusión continua y túneles de secado
-              climáticamente regulados que preservan la estructura proteica del fideo.
+              climáticamente regulados en el Valle de Cusipata que preservan la estructura proteica del fideo.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-stone-700">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 px-3 py-1 border border-stone-300">
@@ -51,6 +51,15 @@ export default function HomePage(): React.JSX.Element {
               <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 px-3 py-1 border border-stone-300">
                 <Mountain className="h-4 w-4 text-[#B55327]" /> 3,300+ m.s.n.m. Cusipata
               </span>
+            </div>
+
+            {/* Fotografía Real de Planta Molinera */}
+            <div className="mt-8 rounded-xl overflow-hidden border border-stone-300 shadow-md">
+              <img
+                src="/images/carrusel_1.png"
+                alt="Planta Molinera y Procesamiento Molinos Cusco S.A."
+                className="w-full h-56 object-cover hover:scale-105 transition-transform duration-500"
+              />
             </div>
           </div>
 

@@ -48,8 +48,8 @@ export function ProductCard({
           </span>
         </div>
 
-        {/* Product Visual Mockup Container with Glow Aura */}
-        <div className="relative my-5 flex h-40 w-full items-center justify-center rounded-xl bg-stone-50 border border-stone-100 overflow-hidden">
+        {/* Real Product Photography Container with Dynamic Ambient Glow */}
+        <div className="relative my-4 flex h-48 w-full items-center justify-center rounded-xl bg-gradient-to-b from-stone-50 to-stone-100/80 border border-stone-200/90 overflow-hidden p-3 shadow-inner">
           {/* Subtle Dynamic Ambient Glow Aura */}
           <div
             aria-hidden="true"
@@ -59,58 +59,13 @@ export function ProductCard({
             }}
           />
 
-          {/* SVG Product Graphic / Package Representation */}
-          <svg
-            viewBox="0 0 120 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="relative z-10 h-24 w-24 drop-shadow-md transition-transform duration-300 group-hover:scale-105"
-            aria-hidden="true"
-          >
-            <rect
-              x="20"
-              y="15"
-              width="80"
-              height="90"
-              rx="10"
-              fill="#1C1917"
-              stroke={product.glowColor}
-              strokeWidth="2.5"
-            />
-            {/* Header banner */}
-            <path d="M20 25 H100 V40 H20 Z" fill={product.glowColor} />
-            <text
-              x="60"
-              y="35"
-              textAnchor="middle"
-              fill="#FAF6F0"
-              fontSize="8"
-              fontFamily="sans-serif"
-              fontWeight="bold"
-            >
-              CUSIPATA
-            </text>
-            {/* Pasta graphic center */}
-            <path
-              d="M35 55 Q 60 70 85 55 M 35 68 Q 60 83 85 68 M 35 81 Q 60 96 85 81"
-              stroke="#FAF6F0"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-            {/* Small weight badge */}
-            <rect x="68" y="85" width="26" height="14" rx="4" fill="#FAF6F0" />
-            <text
-              x="81"
-              y="95"
-              textAnchor="middle"
-              fill="#1C1917"
-              fontSize="7"
-              fontFamily="monospace"
-              fontWeight="bold"
-            >
-              {product.format.includes("10kg") ? "10KG" : product.format.includes("5kg") ? "5KG" : "500G"}
-            </text>
-          </svg>
+          {/* Real Authentic Packaging Photography */}
+          <img
+            src={product.imageUrl}
+            alt={`Fotografía real: ${product.name} - Fideos Cusipata`}
+            className="relative z-10 max-h-40 max-w-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
         </div>
 
         {/* Product Title */}

@@ -148,6 +148,22 @@ export function TechnicalDrawer({
             </p>
           </div>
 
+          {/* Real Authentic Packaging Photography */}
+          <div className="relative flex h-52 w-full items-center justify-center rounded-xl bg-white border border-stone-200 p-4 shadow-sm overflow-hidden">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 opacity-20"
+              style={{
+                background: `radial-gradient(circle at center, ${product.glowColor} 0%, transparent 70%)`,
+              }}
+            />
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="relative z-10 max-h-44 max-w-full object-contain drop-shadow-md"
+            />
+          </div>
+
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-3 gap-2 rounded-xl border border-stone-200 bg-white p-3 font-mono text-xs text-center shadow-sm">
             <div>

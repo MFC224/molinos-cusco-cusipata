@@ -46,12 +46,14 @@ export interface ProductSKU {
   paletizationUnitsPerPallet: number;
   weightNetKg: number;
   nutrition: NutritionalAnalysis;
+  imageUrl: string;
 }
 
 export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   // --- LÍNEA CLÁSICA AL HUEVO (8 SKUs) ---
   {
     id: "tallarin-40-500g",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-40-500",
     name: "Tallarín Grueso #40 al Huevo",
     category: "Línea Clásica",
@@ -70,6 +72,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tallarin-40-10kg",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-40-10K",
     name: "Tallarín Grueso #40 Industrial",
     category: "Línea Clásica",
@@ -88,6 +91,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tallarin-41-500g",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-41-500",
     name: "Tallarín Mediano #41 al Huevo",
     category: "Línea Clásica",
@@ -106,6 +110,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tallarin-41-10kg",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-41-10K",
     name: "Tallarín Mediano #41 Industrial",
     category: "Línea Clásica",
@@ -124,6 +129,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tallarin-42-500g",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-42-500",
     name: "Tallarín Delgado #42 al Huevo",
     category: "Línea Clásica",
@@ -142,6 +148,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tallarin-42-10kg",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-42-10K",
     name: "Tallarín Delgado #42 Industrial",
     category: "Línea Clásica",
@@ -160,6 +167,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "cabello-43-250g",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-43-250",
     name: "Cabello de Ángel #43 al Huevo",
     category: "Línea Clásica",
@@ -178,6 +186,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "cabello-43-10kg",
+    imageUrl: "/images/pasta_al_huevo_40_43.png",
     skuCode: "CUS-43-10K",
     name: "Cabello de Ángel #43 Industrial",
     category: "Línea Clásica",
@@ -198,6 +207,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   // --- LÍNEA ANDINA ESPECIAL (5 SKUs: 3 Quinua, 2 Espinaca) ---
   {
     id: "fideo-quinua-500g",
+    imageUrl: "/images/fideos_espinaca_quinua_kiwicha.png",
     skuCode: "CUS-AND-QUI-500",
     name: "Fideo Tallarín con Quinua Real",
     category: "Línea Andina",
@@ -215,6 +225,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "fideo-quinua-fardo",
+    imageUrl: "/images/fideos_espinaca_quinua_kiwicha.png",
     skuCode: "CUS-AND-QUI-5K",
     name: "Fideo Quinua Real Fardo 5kg",
     category: "Línea Andina",
@@ -232,6 +243,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "fideo-quinua-saco",
+    imageUrl: "/images/fideos_espinaca_quinua_kiwicha.png",
     skuCode: "CUS-AND-QUI-10K",
     name: "Fideo Quinua Real Saco 10kg",
     category: "Línea Andina",
@@ -249,6 +261,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "fideo-espinaca-500g",
+    imageUrl: "/images/fideos_espinaca_quinua_kiwicha.png",
     skuCode: "CUS-AND-ESP-500",
     name: "Fideo Tallarín con Espinaca",
     category: "Línea Andina",
@@ -266,6 +279,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "fideo-espinaca-fardo",
+    imageUrl: "/images/fideos_espinaca_quinua_kiwicha.png",
     skuCode: "CUS-AND-ESP-5K",
     name: "Fideo Espinaca Fardo 5kg",
     category: "Línea Andina",
@@ -285,6 +299,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   // --- PASTA CORTA (6 SKUs: 4 Industriales 10kg, 2 Retail) ---
   {
     id: "corbata-500g",
+    imageUrl: "/images/fideos_pasta_corta_mediana.png",
     skuCode: "CUS-PC-COR-500",
     name: "Fideo Corbata Cusipata",
     category: "Pasta Corta",
@@ -302,6 +317,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "corbata-10kg",
+    imageUrl: "/images/fideos_pasta_corta_mediana.png",
     skuCode: "CUS-PC-COR-10K",
     name: "Fideo Corbata Saco 10kg",
     category: "Pasta Corta",
@@ -319,6 +335,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "codito-500g",
+    imageUrl: "/images/fideos_pasta_corta_mediana.png",
     skuCode: "CUS-PC-COD-500",
     name: "Fideo Codito Rayado",
     category: "Pasta Corta",
@@ -336,6 +353,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "codito-10kg",
+    imageUrl: "/images/fideos_pasta_corta_mediana.png",
     skuCode: "CUS-PC-COD-10K",
     name: "Fideo Codito Saco 10kg",
     category: "Pasta Corta",
@@ -353,6 +371,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "tornillo-10kg",
+    imageUrl: "/images/fideos_pasta_corta_chica.png",
     skuCode: "CUS-PC-TOR-10K",
     name: "Fideo Tornillo Saco 10kg",
     category: "Pasta Corta",
@@ -370,6 +389,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "canuto-10kg",
+    imageUrl: "/images/fideos_pasta_corta_mediana.png",
     skuCode: "CUS-PC-CAN-10K",
     name: "Fideo Canuto Saco 10kg",
     category: "Pasta Corta",
@@ -389,6 +409,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   // --- MOLINERÍA Y DERIVADOS (5 SKUs: Galletas, Harinas, Agua) ---
   {
     id: "galleta-kiwicha",
+    imageUrl: "/images/galletas_dulces_kiwicha.png",
     skuCode: "CUS-DER-GAL-KIW",
     name: "Galleta Nutritiva de Kiwicha Cusipata",
     category: "Molinería y Derivados",
@@ -406,6 +427,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "galleta-quinua",
+    imageUrl: "/images/galletas_quinua_kiwicha.png",
     skuCode: "CUS-DER-GAL-QUI",
     name: "Galleta Andina de Quinua",
     category: "Molinería y Derivados",
@@ -423,6 +445,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "harina-especial-cusipata",
+    imageUrl: "/images/semola_al_huevo.png",
     skuCode: "CUS-DER-HAR-ESP",
     name: "Harina Especial Cusipata",
     category: "Molinería y Derivados",
@@ -440,6 +463,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "harina-integral-andina",
+    imageUrl: "/images/harina_tarwi.png",
     skuCode: "CUS-DER-HAR-INT",
     name: "Harina Integral con Salvado de Trigo",
     category: "Molinería y Derivados",
@@ -457,6 +481,7 @@ export const PRODUCTS_CATALOG: readonly ProductSKU[] = [
   },
   {
     id: "agua-mesa-ausangate",
+    imageUrl: "/images/carrusel_2.png",
     skuCode: "CUS-DER-AGU-AUS",
     name: "Agua de Mesa Cusipata Ausangate",
     category: "Molinería y Derivados",
