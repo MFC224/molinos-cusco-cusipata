@@ -1,137 +1,18 @@
 "use client";
 
 import React from "react";
-import { Wheat, Mountain, ShieldCheck, Flame, Scale, ArrowRight, Truck } from "lucide-react";
+import { Act1Hero } from "@/components/home/Act1Hero";
+import { Act2ParallaxIngredients } from "@/components/home/Act2ParallaxIngredients";
+import { Scale, ShieldCheck, Mountain, Truck } from "lucide-react";
 
 export default function HomePage(): React.JSX.Element {
   return (
     <div className="relative w-full">
-      {/* Acto I Anchor / Hero Cinematográfico */}
-      <section
-        id="hero"
-        aria-label="Acto I: El Silencio del Origen"
-        className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#1C1917] via-[#262220] to-[#FAF6F0] px-4 pt-28 pb-20 text-center text-[#FAF6F0]"
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D99B26]/40 bg-[#262220]/80 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#F5C768] backdrop-blur-md mb-6">
-            <Wheat className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
-            <span>MOLINOS CUSCO S.A. · PLANTA INDUSTRIAL KM 76 CUSIPATA</span>
-          </div>
+      {/* Acto I: El Silencio del Origen (Hero Cinematográfico 4K + Semolina Particles) */}
+      <Act1Hero />
 
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#FAF6F0] leading-tight">
-            La Nobleza del Trigo en el <br className="hidden sm:inline" />
-            <span className="text-[#D99B26] italic">Corazón de los Andes</span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-stone-300 font-sans leading-relaxed">
-            Desde 1960 en los valles interandinos y formalizada en 1988 en Cusipata, transformamos
-            sémolas de alta densidad proteica y granos ancestrales a más de 3,300 metros de altitud.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#calibres"
-              className="inline-flex items-center gap-2 rounded-md bg-[#D99B26] px-6 py-3.5 text-sm font-bold text-[#1C1917] shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#9E1B1B]"
-            >
-              <span>Explorar Calibres (#40 - #43)</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-
-            <a
-              href="#cotizador"
-              className="inline-flex items-center gap-2 rounded-md border border-stone-400/30 bg-[#262220]/60 px-6 py-3.5 text-sm font-semibold text-[#FAF6F0] backdrop-blur-md transition-colors hover:border-[#D99B26] hover:bg-[#262220]"
-            >
-              <Truck className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
-              <span>Cotización Mayorista B2B</span>
-            </a>
-          </div>
-
-          {/* Quick Stats Grid */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-            <div className="rounded-lg border border-[#38332E] bg-[#1C1917]/70 p-4 backdrop-blur-sm">
-              <span className="font-mono text-xs text-[#D99B26]">ALTITUD DE SECADO</span>
-              <p className="mt-1 font-serif text-2xl font-bold text-[#FAF6F0]">3,300 m</p>
-              <p className="text-[11px] text-stone-400">Presión barométrica controlada</p>
-            </div>
-            <div className="rounded-lg border border-[#38332E] bg-[#1C1917]/70 p-4 backdrop-blur-sm">
-              <span className="font-mono text-xs text-[#D99B26]">HERENCIA INDUSTRIAL</span>
-              <p className="mt-1 font-serif text-2xl font-bold text-[#FAF6F0]">60+ Años</p>
-              <p className="text-[11px] text-stone-400">Trayectoria molinera del sur</p>
-            </div>
-            <div className="rounded-lg border border-[#38332E] bg-[#1C1917]/70 p-4 backdrop-blur-sm">
-              <span className="font-mono text-xs text-[#D99B26]">RUC SUNAT</span>
-              <p className="mt-1 font-mono text-xl font-bold text-[#FAF6F0]">20114918718</p>
-              <p className="text-[11px] text-stone-400">Sociedad Anónima inscrita</p>
-            </div>
-            <div className="rounded-lg border border-[#38332E] bg-[#1C1917]/70 p-4 backdrop-blur-sm">
-              <span className="font-mono text-xs text-[#D99B26]">CERTIFICACIÓN</span>
-              <p className="mt-1 font-serif text-2xl font-bold text-[#FAF6F0]">DIGESA</p>
-              <p className="text-[11px] text-stone-400">Directorio oficial PROMPERÚ</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Acto II Anchor: Alquimia de Ingredientes */}
-      <section
-        id="ingredientes"
-        aria-label="Acto II: Alquimia de los Ingredientes Andinos"
-        className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-      >
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#B55327]">
-            Acto II · Alquimia de la Tierra
-          </span>
-          <h2 className="mt-3 font-serif text-3xl sm:text-5xl font-bold text-[#1C1917]">
-            Trigo Durum Seleccionado y Granos Ancestrales
-          </h2>
-          <p className="mt-4 text-stone-600 text-sm sm:text-base leading-relaxed">
-            La simbiosis entre sémola de alta densidad proteica, huevos frescos de granja, hojas
-            seleccionadas de espinaca, quinua real y kiwicha de cooperativas de Quispicanchi.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="rounded-xl border border-stone-200 bg-[#F4EFE6] p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#D99B26]">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#D99B26] text-[#FAF6F0]">
-              <Wheat className="h-6 w-6" aria-hidden="true" />
-            </div>
-            <h3 className="mt-6 font-serif text-xl font-bold text-[#1C1917]">
-              Sémola de Trigo Durum
-            </h3>
-            <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-              Separación mecánica de afrecho y sémolas con molienda diferencial, garantizando
-              tenacidad y retención óptima de almidones durante la cocción.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-stone-200 bg-[#F4EFE6] p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#2D6A4F]">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#2D6A4F] text-[#FAF6F0]">
-              <Flame className="h-6 w-6" aria-hidden="true" />
-            </div>
-            <h3 className="mt-6 font-serif text-xl font-bold text-[#1C1917]">
-              Laminado Tradicional al Huevo
-            </h3>
-            <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-              Línea con huevos de campo y moldes de bronce para una porosidad artesanal que absorbe y
-              retiene salsas con máxima adherencia culinaria.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-stone-200 bg-[#F4EFE6] p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#B55327]">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#B55327] text-[#FAF6F0]">
-              <Mountain className="h-6 w-6" aria-hidden="true" />
-            </div>
-            <h3 className="mt-6 font-serif text-xl font-bold text-[#1C1917]">
-              Biocomercio Quinua y Kiwicha
-            </h3>
-            <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-              Acopio sostenible en los valles de Canchis y Quispicanchi, referenciado por la PUCP en
-              estudios de valor agregado andino.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Acto II: Alquimia de los Ingredientes Andinos (Parallax Multicapa 2.5D) */}
+      <Act2ParallaxIngredients />
 
       {/* Acto III Anchor: Calibrador de Pastas */}
       <section
