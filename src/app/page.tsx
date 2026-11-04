@@ -4,6 +4,7 @@ import React from "react";
 import { Act1Hero } from "@/components/home/Act1Hero";
 import { Act2ParallaxIngredients } from "@/components/home/Act2ParallaxIngredients";
 import { Act3CalibreComparator } from "@/components/home/Act3CalibreComparator";
+import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { Act5LegacyTimeline } from "@/components/home/Act5LegacyTimeline";
 import { ShieldCheck, Mountain, Truck } from "lucide-react";
 
@@ -18,6 +19,9 @@ export default function HomePage(): React.JSX.Element {
 
       {/* Acto III: El Arte del Laminado y Comparador Escalar de Calibres */}
       <Act3CalibreComparator />
+
+      {/* Acto IV: Catálogo Dinámico con Resplandor Reactivo y Fichas Técnicas */}
+      <ProductGrid />
 
       {/* Acto V: El Legado de Cusipata y Memoria Industrial (Máscaras Tipográficas) */}
       <Act5LegacyTimeline />
