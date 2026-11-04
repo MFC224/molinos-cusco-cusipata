@@ -1,4 +1,21 @@
 import "@testing-library/jest-dom";
+import { afterEach } from "vitest";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Mock requestAnimationFrame & cancelAnimationFrame globally
+const mockRaf = (callback: FrameRequestCallback): number => {
+  return setTimeout(callback, 16) as unknown as number;
+};
+const mockCaf = (id: number): void => {
+  clearTimeout(id);
+};
+
+window.requestAnimationFrame = mockRaf;
+window.cancelAnimationFrame = mockCaf;
+globalThis.requestAnimationFrame = mockRaf;
+globalThis.cancelAnimationFrame = mockCaf;
+global.requestAnimationFrame = mockRaf;
+global.cancelAnimationFrame = mockCaf;
 
 // Mock matchMedia for jsdom
 Object.defineProperty(window, "matchMedia", {
@@ -16,7 +33,7 @@ Object.defineProperty(window, "matchMedia", {
 });
 
 // Mock ResizeObserver for jsdom & Lenis
-global.ResizeObserver = class ResizeObserver {
+globalThis.ResizeObserver = class ResizeObserver {
   observe(): void {}
   unobserve(): void {}
   disconnect(): void {}
@@ -50,10 +67,11 @@ HTMLCanvasElement.prototype.getContext = (() => ({
   clip: () => {},
 })) as unknown as typeof HTMLCanvasElement.prototype.getContext;
 
-// Mock requestAnimationFrame & cancelAnimationFrame
-window.requestAnimationFrame = (callback: FrameRequestCallback): number => {
-  return setTimeout(callback, 16) as unknown as number;
-};
-window.cancelAnimationFrame = (id: number): void => {
-  clearTimeout(id);
-};
+// Clean up GSAP ScrollTriggers between tests to prevent dangling timers
+afterEach(() => {
+  try {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  } catch {
+    // Ignore if ScrollTrigger wasn't registered
+  }
+});
