@@ -1,0 +1,23 @@
+{
+  "project": "Molinos Cusco S.A. - Plataforma Web Corporativa B2B",
+  "engine": "Antigravity 3.8 Flash",
+  "max_output_tokens_per_prompt": 64000,
+  "safe_budget_target_tokens": 25000,
+  "standards": {
+    "framework": "Next.js 15 (App Router, React 19)",
+    "language": "TypeScript strict mode",
+    "styling": "Tailwind CSS v4 + Native CSS Variables",
+    "scrollytelling": "GSAP 3 ScrollTrigger + Lenis Smooth Scroll",
+    "state_management": "Zustand with LocalStorage persistence",
+    "validation": "Zod schemas with Peruvian RUC modulo 11 algorithm",
+    "image_handling": "Zero-CLS pipeline with static aspect ratio and WebP/AVIF",
+    "qa_testing": "Vitest (Unit) + Playwright (E2E) + axe-core (WCAG 2.1 AA)"
+  },
+  "generation_rules": [
+    "Never generate more than 4 production-ready files in a single execution step to avoid token truncation.",
+    "Always provide complete, copy-pasteable, production-grade code without placeholders like '// TODO' or '// implement later'.",
+    "Enforce strict typing; do not use 'any' or disable ESLint rules.",
+    "Implement full accessibility attributes (ARIA roles, keyboard traps, polite live regions) across all components.",
+    "All copy text must accurately reflect Molinos Cusco S.A. (Fideos Cusipata) heritage, locations (Km 76 Cusipata and Parque Industrial Cusco), and product lines."
+  ]
+}

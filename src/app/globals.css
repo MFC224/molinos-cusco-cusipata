@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #9E1B1B;
+  --color-brand-red-dark: #7D1414;
+  --color-brand-gold: #D99B26;
+  --color-brand-gold-light: #F5C768;
+  --color-bg-cream: #FAF6F0;
+  --color-bg-cream-card: #F4EFE6;
+  --color-surface-dark: #1C1917;
+  --color-surface-dark-card: #262220;
+  --color-surface-dark-border: #38332E;
+  --color-accent-spinach: #2D6A4F;
+  --color-accent-andean: #B55327;
+
+  --font-playfair: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-jakarta: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
+}
+
+:root {
+  --color-brand-red: #9E1B1B;
+  --color-brand-gold: #D99B26;
+  --color-bg-cream: #FAF6F0;
+  --color-surface-dark: #1C1917;
+  --color-accent-spinach: #2D6A4F;
+  --color-accent-andean: #B55327;
+  --active-ambient-glow: #D99B26;
+}
+
+html {
+  background-color: var(--color-bg-cream);
+  color: var(--color-surface-dark);
+  font-family: var(--font-jakarta);
+  scroll-behavior: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--color-bg-cream);
+  color: #262220;
+}
+
+/* Ambient glow system */
+.ambient-glow-background {
+  transition: background-color 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ambient-glow-radial {
+  background: radial-gradient(circle 800px at 50% 30%, rgba(217, 155, 38, 0.12), transparent 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1C1917;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #44403C;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D99B26;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Accessible Focus States */
+:focus-visible {
+  outline: 2px solid #D99B26;
+  outline-offset: 3px;
+}
+
+/* Prefers Reduced Motion System Reset */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
