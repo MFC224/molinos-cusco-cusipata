@@ -5,6 +5,7 @@ import { SmoothScrollProvider } from "@/lib/lenis";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/layout/CustomCursor";
+import { QuoteDrawer } from "@/components/b2b/QuoteDrawer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <QuoteDrawer />
         </SmoothScrollProvider>
       </body>
     </html>

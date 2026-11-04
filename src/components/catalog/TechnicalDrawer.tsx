@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ProductSKU } from "@/lib/products-data";
+import { useCartStore } from "@/store/useCartStore";
 import { YieldCalculator } from "./YieldCalculator";
 import { X, ShieldCheck, Clock, Calendar, Scale, ShoppingBag, Factory } from "lucide-react";
 
@@ -21,6 +22,8 @@ export function TechnicalDrawer({
   const drawerRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+
+  const { addItem, setDrawerOpen } = useCartStore();
 
   // Store trigger button that opened the drawer to restore focus on close
   useEffect(() => {
@@ -230,8 +233,10 @@ export function TechnicalDrawer({
           <button
             type="button"
             onClick={() => {
+              addItem(product);
               if (onAddToQuote) onAddToQuote(product);
               onClose();
+              setDrawerOpen(true);
             }}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#9E1B1B] py-3 text-sm font-bold text-[#FAF6F0] shadow-lg transition-transform duration-200 hover:scale-[1.02] hover:bg-[#7D1414] focus-visible:ring-2 focus-visible:ring-[#D99B26]"
           >

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSmoothScroll } from "@/lib/lenis";
+import { useCartStore } from "@/store/useCartStore";
 import { Menu, X, ShoppingBag, MapPin, Wheat } from "lucide-react";
 
 interface NavLink {
@@ -23,6 +24,8 @@ export function Navbar(): React.JSX.Element {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollTo } = useSmoothScroll();
+  const { setDrawerOpen, getTotalUnits } = useCartStore();
+  const totalUnits = getTotalUnits();
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -124,18 +127,20 @@ export function Navbar(): React.JSX.Element {
 
           {/* Right Action CTA & Mobile Trigger */}
           <div className="flex items-center gap-3">
-            <a
-              href="#cotizador"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#cotizador");
-              }}
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
               className="inline-flex items-center gap-2 rounded-md bg-[#9E1B1B] px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide text-[#FAF6F0] shadow-md transition-all duration-200 hover:bg-[#7D1414] hover:shadow-[0_0_15px_rgba(158,27,27,0.5)] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none active:scale-95"
-              aria-label="Abrir Cotizador Mayorista B2B"
+              aria-label={`Abrir Cotizador Mayorista B2B (${totalUnits} unidades)`}
             >
               <ShoppingBag className="h-4 w-4 text-[#F5C768]" aria-hidden="true" />
               <span>Cotizador B2B</span>
-            </a>
+              {totalUnits > 0 && (
+                <span className="rounded-full bg-[#D99B26] px-1.5 py-0.2 font-mono text-[10px] font-bold text-[#1C1917]">
+                  {totalUnits}
+                </span>
+              )}
+            </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -215,17 +220,22 @@ export function Navbar(): React.JSX.Element {
               <MapPin className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
               <span>Planta Km 76 Cusco-Sicuani, Cusipata (Quispicanchi)</span>
             </div>
-            <a
-              href="#cotizador"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#cotizador");
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setDrawerOpen(true);
               }}
               className="mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-[#9E1B1B] py-3 text-sm font-bold text-[#FAF6F0] shadow-md hover:bg-[#7D1414] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none"
             >
               <ShoppingBag className="h-4 w-4 text-[#F5C768]" aria-hidden="true" />
               <span>Solicitar Cotización B2B</span>
-            </a>
+              {totalUnits > 0 && (
+                <span className="rounded-full bg-[#D99B26] px-1.5 py-0.2 font-mono text-[10px] font-bold text-[#1C1917]">
+                  {totalUnits}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       )}
