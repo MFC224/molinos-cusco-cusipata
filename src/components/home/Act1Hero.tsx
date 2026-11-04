@@ -9,9 +9,11 @@ import { Wheat, ArrowDown, Sparkles, Scale, ShieldCheck } from "lucide-react";
 
 export function Act1Hero(): React.JSX.Element {
   const heroRef = useRef<HTMLElement | null>(null);
+  const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const visualRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
+  const scrollCueRef = useRef<HTMLDivElement | null>(null);
   const { scrollTo, isReducedMotion } = useSmoothScroll();
 
   useEffect(() => {
@@ -20,54 +22,83 @@ export function Act1Hero(): React.JSX.Element {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Intro entrance animation for elements
+      // Intro entrance animation for elements on initial mount
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.fromTo(
         badgeRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }
+        { opacity: 1, y: 0, duration: 0.8, delay: 0.15 }
       )
         .fromTo(
           contentRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1 },
-          "-=0.5"
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.9 },
+          "-=0.4"
         )
         .fromTo(
           visualRef.current,
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 1.2 },
-          "-=0.8"
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, duration: 1.1 },
+          "-=0.7"
         );
 
-      // Scroll-driven parallax fade and scale when leaving Act I
-      if (heroRef.current && contentRef.current) {
-        gsap.to(contentRef.current, {
-          y: -80,
-          opacity: 0.2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
+      // Scroll-driven parallax fade and scale when leaving Act I:
+      // The hero text and metrics remain 100% visible during initial scrolling (0% to 40%).
+      // Only when transitioning towards Act II (40% to 95%) does it smoothly float up and fade.
+      if (heroRef.current && scrollWrapperRef.current) {
+        gsap.fromTo(
+          scrollWrapperRef.current,
+          { y: 0, opacity: 1 },
+          {
+            y: -80,
+            opacity: 0,
+            ease: "power1.in",
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "40% top",
+              end: "95% top",
+              scrub: 1,
+              immediateRender: false,
+            },
+          }
+        );
+      }
 
-        if (visualRef.current) {
-          gsap.to(visualRef.current, {
-            y: 60,
-            scale: 1.05,
+      // Parallax on the extruded egg pasta background strands
+      if (heroRef.current && visualRef.current) {
+        gsap.fromTo(
+          visualRef.current,
+          { y: 0, scale: 1 },
+          {
+            y: 75,
+            scale: 1.06,
             ease: "none",
             scrollTrigger: {
               trigger: heroRef.current,
               start: "top top",
               end: "bottom top",
-              scrub: true,
+              scrub: 1,
+              immediateRender: false,
             },
-          });
-        }
+          }
+        );
+      }
+
+      // Scroll cue fades out promptly on early scroll (10% to 30%)
+      if (heroRef.current && scrollCueRef.current) {
+        gsap.to(scrollCueRef.current, {
+          opacity: 0,
+          y: 20,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "10% top",
+            end: "30% top",
+            scrub: true,
+            immediateRender: false,
+          },
+        });
       }
     }, heroRef);
 
@@ -202,7 +233,10 @@ export function Act1Hero(): React.JSX.Element {
       </div>
 
       {/* Foreground Content */}
-      <div className="relative z-20 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 text-center my-auto">
+      <div
+        ref={scrollWrapperRef}
+        className="relative z-20 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 text-center my-auto will-change-transform"
+      >
         {/* Heritage Pill Tag */}
         <div ref={badgeRef} className="inline-flex justify-center mb-6">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-[#D99B26]/40 bg-[#262220]/85 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#F5C768] shadow-lg backdrop-blur-md">
@@ -230,7 +264,7 @@ export function Act1Hero(): React.JSX.Element {
             <button
               type="button"
               onClick={() => handleScrollToNext("#calibres")}
-              className="inline-flex items-center gap-2.5 rounded-md bg-[#D99B26] px-7 py-3.5 text-sm sm:text-base font-bold text-[#1C1917] shadow-[0_4px_20px_rgba(217,155,38,0.35)] transition-all duration-200 hover:scale-105 hover:bg-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#9E1B1B] active:scale-95"
+              className="inline-flex items-center gap-2.5 rounded-md bg-[#D99B26] px-7 py-3.5 text-sm sm:text-base font-bold text-[#1C1917] shadow-[0_4px_20px_rgba(217,155,38,0.35)] transition-all duration-200 hover:scale-105 hover:bg-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#9E1B1B] active:scale-95 cursor-pointer"
             >
               <Scale className="h-4 w-4" aria-hidden="true" />
               <span>Ver Calibres (#40 - #43)</span>
@@ -239,7 +273,7 @@ export function Act1Hero(): React.JSX.Element {
             <button
               type="button"
               onClick={() => handleScrollToNext("#ingredientes")}
-              className="inline-flex items-center gap-2.5 rounded-md border border-stone-400/35 bg-[#262220]/80 px-7 py-3.5 text-sm sm:text-base font-semibold text-[#FAF6F0] shadow-md backdrop-blur-md transition-all duration-200 hover:border-[#D99B26] hover:bg-[#262220] hover:text-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#D99B26]"
+              className="inline-flex items-center gap-2.5 rounded-md border border-stone-400/35 bg-[#262220]/80 px-7 py-3.5 text-sm sm:text-base font-semibold text-[#FAF6F0] shadow-md backdrop-blur-md transition-all duration-200 hover:border-[#D99B26] hover:bg-[#262220] hover:text-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#D99B26] cursor-pointer"
             >
               <Sparkles className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
               <span>Alquimia de Ingredientes</span>
@@ -271,11 +305,11 @@ export function Act1Hero(): React.JSX.Element {
       </div>
 
       {/* Downward Scroll Cue with Animated Pulse */}
-      <div className="relative z-20 flex flex-col items-center justify-center pt-8">
+      <div ref={scrollCueRef} className="relative z-20 flex flex-col items-center justify-center pt-8">
         <button
           type="button"
           onClick={() => handleScrollToNext("#ingredientes")}
-          className="group flex flex-col items-center gap-2 text-stone-400 transition-colors hover:text-[#D99B26] focus-visible:ring-1 focus-visible:ring-[#D99B26] focus-visible:outline-none"
+          className="group flex flex-col items-center gap-2 text-stone-400 transition-colors hover:text-[#D99B26] focus-visible:ring-1 focus-visible:ring-[#D99B26] focus-visible:outline-none cursor-pointer"
           aria-label="Desplazarse hacia el Acto II: Alquimia de Ingredientes"
         >
           <span className="font-mono text-[10px] tracking-widest uppercase">Descubrir Alquimia</span>

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { afterEach } from "vitest";
+import { afterEach, afterAll } from "vitest";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Mock requestAnimationFrame & cancelAnimationFrame globally
@@ -14,8 +14,8 @@ window.requestAnimationFrame = mockRaf;
 window.cancelAnimationFrame = mockCaf;
 globalThis.requestAnimationFrame = mockRaf;
 globalThis.cancelAnimationFrame = mockCaf;
-global.requestAnimationFrame = mockRaf;
-global.cancelAnimationFrame = mockCaf;
+(global as Record<string, unknown>).requestAnimationFrame = mockRaf;
+(global as Record<string, unknown>).cancelAnimationFrame = mockCaf;
 
 // Mock matchMedia for jsdom
 Object.defineProperty(window, "matchMedia", {
@@ -67,11 +67,20 @@ HTMLCanvasElement.prototype.getContext = (() => ({
   clip: () => {},
 })) as unknown as typeof HTMLCanvasElement.prototype.getContext;
 
-// Clean up GSAP ScrollTriggers between tests to prevent dangling timers
+// Disable ScrollTrigger and stop _rafBugFix loop to cleanly tear down
 afterEach(() => {
   try {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    ScrollTrigger.disable(true, true);
   } catch {
     // Ignore if ScrollTrigger wasn't registered
+  }
+});
+
+afterAll(() => {
+  try {
+    ScrollTrigger.disable(true, true);
+    ScrollTrigger.clearMatchMedia();
+  } catch {
+    // Ignore
   }
 });

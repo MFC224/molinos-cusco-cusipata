@@ -52,6 +52,25 @@ describe("Sprint 2: Act1Hero Component", () => {
 
     expect(() => unmount()).not.toThrow();
   });
+
+  it("keeps hero copy, metrics and CTAs fully mounted and accessible during initial reading", () => {
+    render(
+      <SmoothScrollProvider>
+        <Act1Hero />
+      </SmoothScrollProvider>
+    );
+
+    const titleHeading = screen.getByRole("heading", { level: 1 });
+    expect(titleHeading).toHaveTextContent(/El Silencio del/i);
+    expect(titleHeading).toHaveTextContent(/Origen Andino/i);
+
+    const paragraph = screen.getByText(/A más de 3,300 m\.s\.n\.m\./i);
+    expect(paragraph).toBeInTheDocument();
+
+    expect(screen.getByText("Presión Andina")).toBeInTheDocument();
+    expect(screen.getByText("Tradición Industrial")).toBeInTheDocument();
+    expect(screen.getByText("Inocuidad Bromatológica")).toBeInTheDocument();
+  });
 });
 
 describe("Sprint 2: SemolinaParticles Component", () => {
