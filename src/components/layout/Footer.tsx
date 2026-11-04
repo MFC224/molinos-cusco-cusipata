@@ -22,15 +22,17 @@ export function Footer(): React.JSX.Element {
           {/* Col 1: Corporate Identity & Heritage */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#9E1B1B] text-[#FAF6F0] shadow-md">
-                <Wheat className="h-6 w-6 text-[#F5C768]" aria-hidden="true" />
-              </div>
+              <img
+                src="/images/logo_color.png"
+                alt="Logo Oficial Molinos Cusco S.A. - Fideos Cusipata"
+                className="h-12 w-auto object-contain drop-shadow"
+              />
               <div className="flex flex-col">
                 <span className="font-serif text-lg font-bold tracking-wider text-[#FAF6F0]">
                   MOLINOS CUSCO S.A.
                 </span>
                 <span className="text-xs uppercase font-semibold tracking-widest text-[#D99B26]">
-                  Fideos Cusipata
+                  Fideos Cusipata · Cusipata Km 76
                 </span>
               </div>
             </div>

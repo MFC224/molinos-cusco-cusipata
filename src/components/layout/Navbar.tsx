@@ -85,11 +85,13 @@ export function Navbar(): React.JSX.Element {
             className="group flex items-center gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none rounded-sm"
             aria-label="Molinos Cusco S.A. — Fideos Cusipata Inicio"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#9E1B1B] text-[#FAF6F0] shadow-md transition-transform duration-200 group-hover:scale-105">
-              <Wheat className="h-6 w-6 text-[#F5C768]" aria-hidden="true" />
-            </div>
+            <img
+              src="/images/logo_color.png"
+              alt="Logo Oficial Molinos Cusco S.A. - Fideos Cusipata"
+              className="h-10 sm:h-12 w-auto object-contain drop-shadow transition-transform duration-200 group-hover:scale-105"
+            />
             <div className="flex flex-col">
-              <span className="font-serif text-lg font-bold tracking-wider text-[#FAF6F0] group-hover:text-[#F5C768] transition-colors">
+              <span className="font-serif text-lg font-bold tracking-wider text-[#FAF6F0] group-hover:text-[#F5C768] transition-colors leading-tight">
                 MOLINOS CUSCO
               </span>
               <span className="text-[10px] uppercase font-semibold tracking-widest text-[#D99B26]">
