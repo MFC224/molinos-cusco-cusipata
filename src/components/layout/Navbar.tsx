@@ -77,24 +77,24 @@ export function Navbar(): React.JSX.Element {
             : "bg-[#FBF8F3]/70 py-4 backdrop-blur-xs border-b border-[#E7DFD5]/40"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 lg:gap-6 xl:gap-8 px-4 sm:px-6 lg:px-8">
           {/* Brand Identity — Authentic Molinos Cusco Seal */}
           <Link
             href="/"
             onClick={() => handleNavClick("#hero")}
-            className="group flex items-center gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none rounded-sm"
+            className="group flex shrink-0 items-center gap-2.5 sm:gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none rounded-sm mr-2 lg:mr-4 xl:mr-6"
             aria-label="Molinos Cusco S.A. — Fideos Cusipata Inicio"
           >
             <img
               src="/images/logo_color.png"
               alt="Logo Oficial Molinos Cusco S.A. - Fideos Cusipata"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-[#231F1D] group-hover:text-[#8C2318] transition-colors leading-tight">
+              <span className="font-serif text-base sm:text-lg xl:text-xl font-bold tracking-tight text-[#231F1D] group-hover:text-[#8C2318] transition-colors leading-tight">
                 MOLINOS CUSCO
               </span>
-              <span className="font-serif text-[11px] italic tracking-wide text-[#8C2318] mt-0.5">
+              <span className="font-serif text-[10px] sm:text-[11px] italic tracking-wide text-[#8C2318] mt-0.5">
                 Fideos Cusipata · Desde 1988
               </span>
             </div>
@@ -104,7 +104,7 @@ export function Navbar(): React.JSX.Element {
           <nav
             role="navigation"
             aria-label="Navegación principal"
-            className="hidden items-center gap-7 lg:flex"
+            className="hidden flex-1 items-center justify-center gap-3.5 xl:gap-6 2xl:gap-7 lg:flex min-w-0"
           >
             {navLinks.map((link) => (
               <a
@@ -114,11 +114,11 @@ export function Navbar(): React.JSX.Element {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="group relative font-serif text-sm font-medium text-[#6E6259] transition-colors hover:text-[#8C2318] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none py-1.5"
+                className="group relative font-serif text-xs xl:text-sm font-medium text-[#6E6259] transition-colors hover:text-[#8C2318] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none py-1.5 whitespace-nowrap shrink-0"
               >
                 <span>{link.label}</span>
                 {link.badge && (
-                  <span className="ml-1.5 rounded-full bg-[#F2ECE1] px-2 py-0.5 font-sans text-[10px] font-semibold text-[#8C2318] border border-[#E7DFD5]">
+                  <span className="ml-1.5 rounded-full bg-[#F2ECE1] px-1.5 py-0.5 font-sans text-[9px] xl:text-[10px] font-semibold text-[#8C2318] border border-[#E7DFD5]">
                     {link.badge}
                   </span>
                 )}
@@ -128,7 +128,7 @@ export function Navbar(): React.JSX.Element {
           </nav>
 
           {/* Right Action CTA & Mobile Trigger */}
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3 ml-2 lg:ml-4 xl:ml-6">
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
