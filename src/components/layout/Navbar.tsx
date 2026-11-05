@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSmoothScroll } from "@/lib/lenis";
 import { useCartStore } from "@/store/useCartStore";
-import { Menu, X, ShoppingBag, MapPin, Wheat } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 
 interface NavLink {
   label: string;
@@ -29,7 +29,7 @@ export function Navbar(): React.JSX.Element {
 
   useEffect(() => {
     const handleScroll = (): void => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 25);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -73,28 +73,28 @@ export function Navbar(): React.JSX.Element {
         role="banner"
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#1C1917]/90 py-3 shadow-[0_4px_25px_rgba(0,0,0,0.4)] backdrop-blur-md border-b border-[#38332E]"
-            : "bg-transparent py-5"
+            ? "bg-[#FBF8F3]/95 py-3 shadow-[0_2px_15px_rgba(35,31,29,0.06)] backdrop-blur-md border-b border-[#E7DFD5]"
+            : "bg-[#FBF8F3]/70 py-4 backdrop-blur-xs border-b border-[#E7DFD5]/40"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand Identity */}
+          {/* Brand Identity — Authentic Molinos Cusco Seal */}
           <Link
             href="/"
             onClick={() => handleNavClick("#hero")}
-            className="group flex items-center gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none rounded-sm"
+            className="group flex items-center gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none rounded-sm"
             aria-label="Molinos Cusco S.A. — Fideos Cusipata Inicio"
           >
             <img
               src="/images/logo_color.png"
               alt="Logo Oficial Molinos Cusco S.A. - Fideos Cusipata"
-              className="h-10 sm:h-12 w-auto object-contain drop-shadow transition-transform duration-200 group-hover:scale-105"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="font-serif text-lg font-bold tracking-wider text-[#FAF6F0] group-hover:text-[#F5C768] transition-colors leading-tight">
+              <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-[#231F1D] group-hover:text-[#8C2318] transition-colors leading-tight">
                 MOLINOS CUSCO
               </span>
-              <span className="text-[10px] uppercase font-semibold tracking-widest text-[#D99B26]">
+              <span className="font-serif text-[11px] italic tracking-wide text-[#8C2318] mt-0.5">
                 Fideos Cusipata · Desde 1988
               </span>
             </div>
@@ -104,7 +104,7 @@ export function Navbar(): React.JSX.Element {
           <nav
             role="navigation"
             aria-label="Navegación principal"
-            className="hidden items-center gap-6 lg:flex"
+            className="hidden items-center gap-7 lg:flex"
           >
             {navLinks.map((link) => (
               <a
@@ -114,15 +114,15 @@ export function Navbar(): React.JSX.Element {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="group relative text-sm font-medium text-[#FAF6F0]/90 transition-colors hover:text-[#F5C768] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none py-1"
+                className="group relative font-serif text-sm font-medium text-[#6E6259] transition-colors hover:text-[#8C2318] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none py-1.5"
               >
                 <span>{link.label}</span>
                 {link.badge && (
-                  <span className="ml-1.5 rounded bg-[#38332E] px-1.5 py-0.5 font-mono text-[10px] text-[#D99B26] border border-[#D99B26]/30">
+                  <span className="ml-1.5 rounded-full bg-[#F2ECE1] px-2 py-0.5 font-sans text-[10px] font-semibold text-[#8C2318] border border-[#E7DFD5]">
                     {link.badge}
                   </span>
                 )}
-                <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#D99B26] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#8C2318] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -132,112 +132,124 @@ export function Navbar(): React.JSX.Element {
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="inline-flex items-center gap-2 rounded-md bg-[#9E1B1B] px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide text-[#FAF6F0] shadow-md transition-all duration-200 hover:bg-[#7D1414] hover:shadow-[0_0_15px_rgba(158,27,27,0.5)] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none active:scale-95"
+              className="inline-flex items-center gap-2.5 rounded-sm bg-[#8C2318] px-4 sm:px-5 py-2 text-xs sm:text-sm font-serif font-medium tracking-wide text-[#FBF8F3] shadow-xs transition-all duration-200 hover:bg-[#6F1B12] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none active:scale-95 cursor-pointer"
               aria-label={`Abrir Cotizador Mayorista B2B (${totalUnits} unidades)`}
             >
-              <ShoppingBag className="h-4 w-4 text-[#F5C768]" aria-hidden="true" />
+              <ShoppingBag className="h-4 w-4 text-[#F5E6C8]" aria-hidden="true" />
               <span>Cotizador B2B</span>
               {totalUnits > 0 && (
-                <span className="rounded-full bg-[#D99B26] px-1.5 py-0.2 font-mono text-[10px] font-bold text-[#1C1917]">
-                  {totalUnits}
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#C68B2C] font-mono text-[10px] font-bold text-[#231F1D]">
+                  {totalUnits > 99 ? "99+" : totalUnits}
                 </span>
               )}
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#38332E] bg-[#262220] text-[#FAF6F0] lg:hidden hover:border-[#D99B26] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none"
+              className="flex h-10 w-10 items-center justify-center rounded-sm border border-[#E7DFD5] bg-[#F2ECE1] text-[#231F1D] lg:hidden hover:border-[#8C2318] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none cursor-pointer"
               aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-navigation"
               aria-label={mobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? (
-                <X className="h-5 w-5 text-[#FAF6F0]" aria-hidden="true" />
+                <X className="h-5 w-5 text-[#8C2318]" aria-hidden="true" />
               ) : (
-                <Menu className="h-5 w-5 text-[#FAF6F0]" aria-hidden="true" />
+                <Menu className="h-5 w-5 text-[#231F1D]" aria-hidden="true" />
               )}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation with Accessible Backdrop */}
+      {/* Accessible Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div
           id="mobile-navigation"
           role="dialog"
           aria-modal="true"
           aria-label="Menú de navegación móvil"
-          className="fixed inset-0 z-50 lg:hidden flex flex-col justify-between bg-[#1C1917]/95 backdrop-blur-xl px-6 py-8"
+          className="fixed inset-0 z-50 lg:hidden"
         >
-          <div className="flex items-center justify-between border-b border-[#38332E] pb-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#9E1B1B] text-[#FAF6F0]">
-                <Wheat className="h-5 w-5 text-[#F5C768]" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-base font-bold text-[#FAF6F0]">
-                  MOLINOS CUSCO
-                </span>
-                <span className="text-[10px] uppercase font-semibold text-[#D99B26]">
-                  Fideos Cusipata
-                </span>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg p-2 text-[#FAF6F0] hover:bg-[#262220] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none"
-              aria-label="Cerrar menú"
-            >
-              <X className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
+          {/* Backdrop */}
+          <div
+            aria-hidden="true"
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 bg-[#231F1D]/40 backdrop-blur-xs transition-opacity"
+          />
 
-          <nav className="flex flex-col gap-4 py-8" aria-label="Enlaces de navegación móvil">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
+          {/* Drawer Sheet */}
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#FBF8F3] p-6 shadow-2xl border-l border-[#E7DFD5] flex flex-col justify-between overflow-y-auto">
+            <div>
+              <div className="flex items-center justify-between pb-6 border-b border-[#E7DFD5]">
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/images/logo_color.png"
+                    alt="Logo Fideos Cusipata"
+                    className="h-9 w-auto object-contain"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-serif text-sm font-bold text-[#231F1D]">
+                      MOLINOS CUSCO
+                    </span>
+                    <span className="font-serif text-[10px] italic text-[#8C2318]">
+                      Fideos Cusipata
+                    </span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-sm p-1.5 text-[#6E6259] hover:bg-[#F2ECE1] hover:text-[#231F1D] focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none"
+                  aria-label="Cerrar menú"
+                >
+                  <X className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
+
+              {/* Mobile Nav Links */}
+              <nav className="mt-6 flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className="flex items-center justify-between rounded-sm px-3.5 py-3 font-serif text-base text-[#231F1D] transition-colors hover:bg-[#F2ECE1] hover:text-[#8C2318]"
+                  >
+                    <span>{link.label}</span>
+                    {link.badge && (
+                      <span className="rounded-full bg-[#F2ECE1] px-2 py-0.5 font-sans text-xs font-semibold text-[#8C2318] border border-[#E7DFD5]">
+                        {link.badge}
+                      </span>
+                    )}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Mobile Footer Area */}
+            <div className="border-t border-[#E7DFD5] pt-6 space-y-4">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setDrawerOpen(true);
                 }}
-                className="flex items-center justify-between border-b border-[#262220] pb-3 text-lg font-medium text-[#FAF6F0] hover:text-[#D99B26] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none"
+                className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#8C2318] py-3 font-serif text-sm font-medium text-[#FBF8F3] shadow-xs hover:bg-[#6F1B12] transition-colors"
               >
-                <span>{link.label}</span>
-                {link.badge && (
-                  <span className="rounded bg-[#262220] px-2 py-0.5 font-mono text-xs text-[#D99B26] border border-[#D99B26]/30">
-                    {link.badge}
-                  </span>
-                )}
-              </a>
-            ))}
-          </nav>
+                <ShoppingBag className="h-4 w-4 text-[#F5E6C8]" aria-hidden="true" />
+                <span>Cotizador Mayorista B2B</span>
+              </button>
 
-          <div className="flex flex-col gap-3 border-t border-[#38332E] pt-6">
-            <div className="flex items-center gap-2 text-xs text-stone-400">
-              <MapPin className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
-              <span>Planta Km 76 Cusco-Sicuani, Cusipata (Quispicanchi)</span>
+              <div className="text-center font-serif text-xs text-[#6E6259]">
+                <p>Planta Industrial Km 76 Cusipata, Cusco</p>
+                <p className="mt-1 font-mono text-[11px] text-[#8C2318]">RUC 20114918718</p>
+              </div>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setDrawerOpen(true);
-              }}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-[#9E1B1B] py-3 text-sm font-bold text-[#FAF6F0] shadow-md hover:bg-[#7D1414] focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none"
-            >
-              <ShoppingBag className="h-4 w-4 text-[#F5C768]" aria-hidden="true" />
-              <span>Solicitar Cotización B2B</span>
-              {totalUnits > 0 && (
-                <span className="rounded-full bg-[#D99B26] px-1.5 py-0.2 font-mono text-[10px] font-bold text-[#1C1917]">
-                  {totalUnits}
-                </span>
-              )}
-            </button>
           </div>
         </div>
       )}

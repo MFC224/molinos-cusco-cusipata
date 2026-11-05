@@ -1,17 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-red: #9E1B1B;
-  --color-brand-red-dark: #7D1414;
-  --color-brand-gold: #D99B26;
-  --color-brand-gold-light: #F5C768;
-  --color-bg-cream: #FAF6F0;
-  --color-bg-cream-card: #F4EFE6;
-  --color-surface-dark: #1C1917;
-  --color-surface-dark-card: #262220;
-  --color-surface-dark-border: #38332E;
-  --color-accent-spinach: #2D6A4F;
-  --color-accent-andean: #B55327;
+  /* Paleta Editorial Orgánica Mate — Molinos Cusco / Fideos Cusipata */
+  --color-paper-light: #FBF8F3;
+  --color-stone-warm: #F2ECE1;
+  --color-border-warm: #E7DFD5;
+  --color-ink-charcoal: #231F1D;
+  --color-earth-roasted: #6E6259;
+  --color-red-tradition: #8C2318;
+  --color-red-tradition-dark: #6F1B12;
+  --color-ochre-yolk: #C68B2C;
+  --color-salvia-soft: #DCE6DF;
+  --color-ochre-cream: #F5E6C8;
+  --color-terracotta-pale: #F2DDD5;
+
+  /* Aliases de compatibilidad con tokens de diseño */
+  --color-brand-red: #8C2318;
+  --color-brand-red-dark: #6F1B12;
+  --color-brand-gold: #C68B2C;
+  --color-brand-gold-light: #F5E6C8;
+  --color-bg-cream: #FBF8F3;
+  --color-bg-cream-card: #F2ECE1;
+  --color-surface-dark: #231F1D;
+  --color-surface-dark-card: #2B2623;
+  --color-surface-dark-border: #4A423D;
+  --color-accent-spinach: #3A6953;
+  --color-accent-andean: #A03D26;
 
   --font-playfair: var(--font-playfair), "Playfair Display", Georgia, serif;
   --font-jakarta: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -19,18 +33,18 @@
 }
 
 :root {
-  --color-brand-red: #9E1B1B;
-  --color-brand-gold: #D99B26;
-  --color-bg-cream: #FAF6F0;
-  --color-surface-dark: #1C1917;
-  --color-accent-spinach: #2D6A4F;
-  --color-accent-andean: #B55327;
-  --active-ambient-glow: #D99B26;
+  --color-bg-paper: #FBF8F3;
+  --color-bg-stone: #F2ECE1;
+  --color-text-ink: #231F1D;
+  --color-text-earth: #6E6259;
+  --color-red-cusipata: #8C2318;
+  --color-ochre-durum: #C68B2C;
+  --color-border-subtle: #E7DFD5;
 }
 
 html {
-  background-color: var(--color-bg-cream);
-  color: var(--color-surface-dark);
+  background-color: #FBF8F3;
+  color: #231F1D;
   font-family: var(--font-jakarta);
   scroll-behavior: auto;
   text-rendering: optimizeLegibility;
@@ -42,38 +56,37 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  background-color: var(--color-bg-cream);
-  color: #262220;
+  background-color: #FBF8F3;
+  color: #231F1D;
+  selection-background-color: #F5E6C8;
+  selection-color: #231F1D;
 }
 
-/* Ambient glow system */
-.ambient-glow-background {
-  transition: background-color 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+::selection {
+  background-color: #F5E6C8;
+  color: #231F1D;
 }
 
-.ambient-glow-radial {
-  background: radial-gradient(circle 800px at 50% 30%, rgba(217, 155, 38, 0.12), transparent 70%);
-}
-
-/* Custom Scrollbar */
+/* Scrollbar Editorial en Tonalidad Piedra y Trigo */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1C1917;
+  background: #FBF8F3;
+  border-left: 1px solid #E7DFD5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #44403C;
+  background: #D4C9BA;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D99B26;
+  background: #C68B2C;
 }
 
-/* Lenis Recommended CSS */
+/* Lenis Smooth Scroll Recommended CSS */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -94,9 +107,9 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Accessible Focus States */
+/* Accessible Focus States — Muted Ochre */
 :focus-visible {
-  outline: 2px solid #D99B26;
+  outline: 2px solid #C68B2C;
   outline-offset: 3px;
 }
 
