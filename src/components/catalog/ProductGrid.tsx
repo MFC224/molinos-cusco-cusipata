@@ -12,7 +12,7 @@ import {
 } from "@/lib/products-data";
 import { ProductCard } from "./ProductCard";
 import { TechnicalDrawer } from "./TechnicalDrawer";
-import { Search, RotateCcw, Filter, Sparkles, PackageSearch } from "lucide-react";
+import { Search, RotateCcw, Filter, Sparkles, PackageSearch, Wheat } from "lucide-react";
 
 const CATEGORIES: readonly (ProductCategory | "Todas")[] = [
   "Todas",
@@ -99,13 +99,13 @@ export function ProductGrid(): React.JSX.Element {
     <section
       id="catalogo"
       aria-label="Catálogo Interactivo y Vitrina Mayorista"
-      className="relative min-h-screen bg-[#FAF6F0] py-28 px-4 sm:px-6 lg:px-8 text-[#1C1917] transition-colors duration-700 overflow-hidden"
+      className="relative min-h-screen bg-[#FBF8F3] py-28 px-4 sm:px-6 lg:px-8 text-[#231F1D] overflow-hidden"
     >
-      {/* Dynamic Ambient Glow Reactive Halo (HU-06) */}
+      {/* Dynamic Ambient Glow Reactive Halo (Warm Matte Backdrop) */}
       <div
         aria-hidden="true"
         data-testid="ambient-glow-halo"
-        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[750px] w-full max-w-6xl rounded-full blur-[140px] opacity-15 will-change-transform"
+        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[750px] w-full max-w-6xl rounded-full blur-[160px] opacity-15 will-change-transform"
         style={{
           backgroundColor: activeGlowColor,
           transition: "background-color 600ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -115,28 +115,28 @@ export function ProductGrid(): React.JSX.Element {
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D99B26]/40 bg-[#F4EFE6] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[#9E1B1B]">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Acto IV · Catálogo Dinámico Multicriterio</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E7DFD5] bg-[#F2ECE1] px-4 py-1.5 text-xs font-serif tracking-widest text-[#6E6259] shadow-xs">
+            <Wheat className="h-3.5 w-3.5 text-[#8C2318]" aria-hidden="true" />
+            <span>Maestría Molinera · Venta Mayorista y Distribución</span>
           </div>
 
-          <h2 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1917]">
+          <h2 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#231F1D] leading-tight">
             Vitrina Industrial de <br />
-            <span className="text-[#9E1B1B] italic">Pastas y Molinería</span>
+            <span className="text-[#8C2318] italic font-serif font-normal">Pastas y Molinería</span>
           </h2>
 
-          <p className="mt-4 text-sm sm:text-base text-stone-600 font-sans leading-relaxed">
-            Consulte las especificaciones bromatológicas, calibres y factores de estiba para
-            nuestras 24 referencias comerciales producidas en Cusipata.
+          <p className="mt-4 text-base sm:text-lg text-[#6E6259] font-sans leading-relaxed max-w-2xl mx-auto">
+            Consulte las especificaciones bromatológicas, calibres y formatos de estiba para
+            nuestras 24 referencias comerciales elaboradas con agua del Ausangate en Cusipata.
           </p>
         </div>
 
         {/* Search & Filter Controls Bar */}
-        <div className="mt-12 rounded-2xl border border-stone-200/90 bg-white p-5 shadow-lg space-y-5">
+        <div className="mt-12 rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1] p-6 sm:p-8 shadow-xs space-y-6">
           {/* Top: Search Input and Quick Reset */}
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <div className="relative w-full flex-1">
-              <Search className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6E6259]" />
               <input
                 type="text"
                 value={searchQuery}
@@ -146,7 +146,7 @@ export function ProductGrid(): React.JSX.Element {
                   });
                 }}
                 placeholder="Buscar por calibre (#40), fideo, espinaca, quinua o harina..."
-                className="w-full rounded-xl border border-stone-300 bg-stone-50 py-3 pl-10 pr-4 text-sm text-[#1C1917] placeholder-stone-400 transition-colors focus:border-[#D99B26] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D99B26]/30"
+                className="w-full rounded-2xl border border-[#E7DFD5] bg-[#FBF8F3] py-3.5 pl-11 pr-4 text-sm text-[#231F1D] placeholder-[#6E6259]/60 transition-colors focus:border-[#8C2318] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C68B2C]/30 font-sans"
                 aria-label="Buscar productos en el catálogo"
               />
             </div>
@@ -158,7 +158,7 @@ export function ProductGrid(): React.JSX.Element {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-stone-300 bg-stone-100 px-4 py-3 text-xs font-bold text-stone-700 transition-colors hover:bg-stone-200 focus-visible:ring-2 focus-visible:ring-[#D99B26] shrink-0"
+                className="inline-flex items-center gap-1.5 rounded-2xl border border-[#E7DFD5] bg-white px-5 py-3.5 text-xs font-serif font-bold text-[#6E6259] transition-colors hover:bg-[#FBF8F3] hover:text-[#8C2318] focus-visible:ring-2 focus-visible:ring-[#C68B2C] shrink-0 cursor-pointer shadow-xs"
                 aria-label="Limpiar todos los filtros"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
@@ -168,9 +168,9 @@ export function ProductGrid(): React.JSX.Element {
           </div>
 
           {/* Middle: Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2 border-t border-stone-100 pt-4">
-            <span className="font-mono text-xs font-semibold text-stone-500 mr-2 flex items-center gap-1">
-              <Filter className="h-3.5 w-3.5" /> Categoría:
+          <div className="flex flex-wrap items-center gap-2 border-t border-[#E7DFD5] pt-5">
+            <span className="font-serif text-xs font-semibold text-[#6E6259] mr-2 flex items-center gap-1.5">
+              <Filter className="h-3.5 w-3.5 text-[#8C2318]" /> Línea:
             </span>
             {CATEGORIES.map((cat) => {
               const isSelected = selectedCategory === cat;
@@ -179,10 +179,10 @@ export function ProductGrid(): React.JSX.Element {
                   key={cat}
                   type="button"
                   onClick={() => handleCategoryChange(cat)}
-                  className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#D99B26] ${
+                  className={`rounded-full px-4 py-2 text-xs font-serif font-bold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#C68B2C] cursor-pointer ${
                     isSelected
-                      ? "bg-[#1C1917] text-[#FAF6F0] shadow-md"
-                      : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                      ? "bg-[#8C2318] text-[#FBF8F3] shadow-xs scale-102"
+                      : "border border-[#E7DFD5] bg-white/80 text-[#6E6259] hover:bg-white hover:text-[#8C2318]"
                   }`}
                   aria-pressed={isSelected}
                 >
@@ -193,10 +193,10 @@ export function ProductGrid(): React.JSX.Element {
           </div>
 
           {/* Bottom: Secondary Filters (Ingredients & Formats) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-stone-100 pt-4 text-xs font-mono">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#E7DFD5] pt-5 text-xs">
             {/* Ingredients Filter */}
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-stone-500 font-semibold mr-1">Ingrediente:</span>
+              <span className="text-[#6E6259] font-serif font-semibold mr-1">Ingrediente:</span>
               {INGREDIENTS.map((ing) => {
                 const isSelected = selectedIngredient === ing;
                 return (
@@ -204,10 +204,10 @@ export function ProductGrid(): React.JSX.Element {
                     key={ing}
                     type="button"
                     onClick={() => handleIngredientChange(ing)}
-                    className={`rounded-md px-2.5 py-1 transition-colors ${
+                    className={`rounded-full px-3 py-1 font-serif transition-colors cursor-pointer ${
                       isSelected
-                        ? "bg-[#D99B26] text-[#1C1917] font-bold shadow-xs"
-                        : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                        ? "bg-[#C68B2C] text-[#231F1D] font-bold shadow-xs"
+                        : "border border-[#E7DFD5] bg-white/70 text-[#6E6259] hover:bg-white hover:text-[#231F1D]"
                     }`}
                   >
                     {ing}
@@ -218,7 +218,7 @@ export function ProductGrid(): React.JSX.Element {
 
             {/* Formats Filter */}
             <div className="flex flex-wrap items-center gap-1.5 sm:justify-end">
-              <span className="text-stone-500 font-semibold mr-1">Empaque:</span>
+              <span className="text-[#6E6259] font-serif font-semibold mr-1">Presentación:</span>
               {FORMATS.map((fmt) => {
                 const isSelected = selectedFormat === fmt;
                 return (
@@ -226,10 +226,10 @@ export function ProductGrid(): React.JSX.Element {
                     key={fmt}
                     type="button"
                     onClick={() => setSelectedFormat(fmt)}
-                    className={`rounded-md px-2.5 py-1 transition-colors ${
+                    className={`rounded-full px-3 py-1 font-serif transition-colors cursor-pointer ${
                       isSelected
-                        ? "bg-[#9E1B1B] text-[#FAF6F0] font-bold shadow-xs"
-                        : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                        ? "bg-[#8C2318] text-[#FBF8F3] font-bold shadow-xs"
+                        : "border border-[#E7DFD5] bg-white/70 text-[#6E6259] hover:bg-white hover:text-[#231F1D]"
                     }`}
                   >
                     {fmt}
@@ -240,25 +240,24 @@ export function ProductGrid(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Results Counter and Active Ambient Indicator */}
-        <div className="mt-6 flex items-center justify-between text-xs font-mono text-stone-500 px-2">
+        {/* Results Counter and Indicator */}
+        <div className="mt-6 flex items-center justify-between text-xs font-serif text-[#6E6259] px-2">
           <span>
-            Mostrando <strong>{filteredProducts.length}</strong> de{" "}
-            <strong>{PRODUCTS_CATALOG.length}</strong> productos
+            Mostrando <strong className="text-[#231F1D]">{filteredProducts.length}</strong> de{" "}
+            <strong className="text-[#231F1D]">{PRODUCTS_CATALOG.length}</strong> productos
           </span>
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-2">
             <span
-              className="h-2.5 w-2.5 rounded-full"
+              className="h-2.5 w-2.5 rounded-full shadow-xs"
               style={{ backgroundColor: activeGlowColor }}
             />
-            <span className="hidden sm:inline">Atmósfera Activa:</span>
-            <strong className="text-stone-800">{activeGlowColor}</strong>
+            <span className="font-serif italic text-[#6E6259]">Tono de línea</span>
           </span>
         </div>
 
         {/* Product Cards Grid or Empty State */}
         {filteredProducts.length > 0 ? (
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -270,22 +269,22 @@ export function ProductGrid(): React.JSX.Element {
             ))}
           </div>
         ) : (
-          /* Empty State (HU-05 Escenario 2 / ESC-03.09) */
-          <div className="mt-12 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-stone-300 bg-white p-12 text-center shadow-sm">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-400">
+          /* Empty State (ESC-03.09 & ESC-03.11) */
+          <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#E7DFD5] bg-[#F2ECE1] p-12 text-center shadow-xs">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#8C2318] shadow-xs">
               <PackageSearch className="h-7 w-7" aria-hidden="true" />
             </div>
-            <h3 className="mt-4 font-serif text-xl font-bold text-[#1C1917]">
+            <h3 className="mt-4 font-serif text-2xl font-bold text-[#231F1D]">
               No se hallaron productos asociados
             </h3>
-            <p className="mt-2 max-w-md text-xs sm:text-sm text-stone-500 font-sans">
+            <p className="mt-2 max-w-md text-sm text-[#6E6259] font-sans">
               No encontramos coincidencias para los filtros o el término ingresado. Pruebe
               restablecer los filtros para volver al catálogo maestro completo.
             </p>
             <button
               type="button"
               onClick={handleResetFilters}
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#9E1B1B] px-5 py-2.5 text-xs font-bold text-[#FAF6F0] shadow-md transition-transform duration-200 hover:scale-105 hover:bg-[#7D1414] focus-visible:ring-2 focus-visible:ring-[#D99B26]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#8C2318] px-6 py-2.5 text-xs font-serif font-bold text-[#FBF8F3] shadow-xs transition-transform duration-200 hover:scale-105 hover:bg-[#6F1B12] focus-visible:ring-2 focus-visible:ring-[#C68B2C] cursor-pointer"
             >
               <RotateCcw className="h-4 w-4" />
               <span>Restablecer Filtros</span>

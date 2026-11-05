@@ -2,7 +2,23 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { CALIBRES, CalibreData, getCalibreByCode, clampCalibreIndex } from "@/lib/calibre-data";
-import { Scale, Clock, Droplets, ZoomIn, Utensils, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import {
+  Scale,
+  Clock,
+  Droplets,
+  ZoomIn,
+  Utensils,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  Wheat,
+  Layers,
+  Wind,
+  Sparkles,
+  Timer,
+  Flame,
+  Award,
+} from "lucide-react";
 
 export function Act3CalibreComparator(): React.JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -25,7 +41,6 @@ export function Act3CalibreComparator(): React.JSX.Element {
         }
       }
     } catch {
-      // Safe fallback
       setSelectedIndex(0);
     }
   }, []);
@@ -50,294 +65,467 @@ export function Act3CalibreComparator(): React.JSX.Element {
       ref={containerRef}
       id="calibres"
       role="region"
-      aria-label="Acto III: El Arte del Laminado y Comparador Escalar de Calibres"
-      className="relative min-h-screen bg-[#1C1917] py-28 px-4 sm:px-6 lg:px-8 text-[#FAF6F0] overflow-hidden border-t border-[#38332E]"
+      aria-label="El Arte del Laminado y Comparador Escalar de Calibres"
+      className="relative min-h-screen bg-[#FBF8F3] py-28 px-4 sm:px-6 lg:px-8 text-[#231F1D] overflow-hidden"
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* Background Ambience */}
+      {/* Organic Warm Background Blobs (Salvia, Trigo, Terracota - Zero Neon) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_700px_at_50%_40%,rgba(217,155,38,0.08),transparent_70%)]"
+        className="pointer-events-none absolute top-20 -left-20 h-96 w-96 rounded-full bg-[#F5E6C8]/60 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 -right-24 h-[550px] w-[550px] rounded-full bg-[#DCE6DF]/50 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-20 -left-24 h-96 w-96 rounded-full bg-[#F2DDD5]/60 blur-3xl"
       />
 
-      <div className="mx-auto max-w-7xl">
-        {/* Section Header */}
+      <div className="relative mx-auto max-w-7xl">
+        {/* =========================================================================
+            PARTE 1: EL SECRETO DEL LAMINADO LENTO (3 PASOS GASTRONÓMICOS EN SCROLL)
+            ========================================================================= */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D99B26]/30 bg-[#262220] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[#D99B26]">
-            <Scale className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Acto III · Comparador Micrométrico</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E7DFD5] bg-[#F2ECE1] px-4 py-1.5 text-xs font-serif tracking-widest text-[#6E6259] shadow-xs">
+            <Wheat className="h-3.5 w-3.5 text-[#8C2318]" aria-hidden="true" />
+            <span>Alquimia Pastelera Tradicional</span>
           </div>
 
-          <h2 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF6F0]">
-            El Arte del Laminado y <br />
-            <span className="text-[#D99B26] italic">Calibres a Escala Real</span>
+          <h2 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#231F1D] leading-tight">
+            El Secreto del <br />
+            <span className="text-[#8C2318] italic font-serif font-normal">Laminado Lento Cusipata</span>
           </h2>
 
-          <p className="mt-4 text-sm sm:text-base text-stone-300 font-sans leading-relaxed">
-            Del grosor imponente del Tallarín Grueso #40 al hilo sutil del Cabello de Ángel #43.
-            Explore diámetros, tiempos de cocción al dente y absorción hídrica calculados para
-            cocina profesional y distribución mayorista.
+          <p className="mt-4 text-base sm:text-lg text-[#6E6259] font-sans leading-relaxed max-w-2xl mx-auto">
+            ¿Por qué nuestra pasta artesanal sabe diferente? A diferencia del prensado rápido industrial,
+            respetamos los tiempos de la sémola, el reposo del huevo y la brisa seca de los Andes.
           </p>
         </div>
 
-        {/* Live Region for Screen Readers (WCAG AA requirement ESC-04.08) */}
-        <div aria-live="polite" className="sr-only" data-testid="live-region-announcement">
-          Calibre seleccionado {currentCalibre.code} {currentCalibre.name}. Espesor:{" "}
-          {currentCalibre.thicknessMm.toFixed(2)} milímetros. Tiempo de cocción:{" "}
-          {currentCalibre.cookingTimeMin} minutos.
-        </div>
-
-        {/* Calibre Selection Buttons / Micrometric Slider */}
-        <div className="mt-12 flex flex-col items-center">
-          <div
-            role="tablist"
-            aria-label="Selector de calibre de pastas"
-            className="flex flex-wrap justify-center gap-2 rounded-xl border border-[#38332E] bg-[#262220] p-1.5 shadow-xl max-w-full"
-          >
-            {CALIBRES.map((calibre, index) => {
-              const isSelected = index === selectedIndex;
-              return (
-                <button
-                  key={calibre.code}
-                  role="tab"
-                  aria-selected={isSelected}
-                  aria-controls={`panel-${calibre.numericCode}`}
-                  id={`tab-${calibre.numericCode}`}
-                  type="button"
-                  onClick={() => setCalibreSafe(index)}
-                  className={`flex items-center gap-2 rounded-lg px-4 py-2.5 font-mono text-sm sm:text-base font-bold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#D99B26] focus-visible:outline-none ${
-                    isSelected
-                      ? "bg-[#D99B26] text-[#1C1917] shadow-[0_0_12px_rgba(217,155,38,0.5)] scale-105"
-                      : "text-stone-400 hover:bg-[#38332E]/60 hover:text-[#FAF6F0]"
-                  }`}
-                >
-                  <span>{calibre.code}</span>
-                  <span className="hidden sm:inline font-sans text-xs font-semibold">
-                    {calibre.name}
-                  </span>
-                  {isSelected && <Check className="h-4 w-4" aria-hidden="true" />}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Stepper controls for mobile touch */}
-          <div className="mt-3 flex items-center gap-4 text-xs font-mono text-stone-400 sm:hidden">
-            <button
-              type="button"
-              disabled={selectedIndex === 0}
-              onClick={() => setCalibreSafe(selectedIndex - 1)}
-              className="p-1 rounded bg-[#262220] disabled:opacity-40"
-              aria-label="Calibre anterior"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <span>Navegar con flechas</span>
-            <button
-              type="button"
-              disabled={selectedIndex === CALIBRES.length - 1}
-              onClick={() => setCalibreSafe(selectedIndex + 1)}
-              className="p-1 rounded bg-[#262220] disabled:opacity-40"
-              aria-label="Calibre siguiente"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Main Comparator Panel */}
-        <div
-          id={`panel-${currentCalibre.numericCode}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${currentCalibre.numericCode}`}
-          className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-        >
-          {/* Visual Vector Render (Left / Center - 7 cols) */}
-          <div className="lg:col-span-7 flex flex-col rounded-2xl border border-[#38332E] bg-[#262220] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            {/* Texture Zoom Toggle Button (ESC-04.14) */}
-            <div className="flex items-center justify-between border-b border-[#38332E] pb-4">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-[#D99B26]">RENDER VECTORIAL</span>
-                <span className="text-stone-500">•</span>
-                <span className="font-mono text-xs text-stone-400">Escala de Laminado</span>
+        {/* 3 Pasos Visuales en Tarjetas Editoriales */}
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Paso 1 */}
+          <article className="group relative flex flex-col justify-between rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1]/80 p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:bg-white">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-xs font-bold tracking-widest uppercase text-[#8C2318]">
+                  Paso I · Ingrediente Puro
+                </span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#F5E6C8] text-[#8C2318] shadow-xs">
+                  <Wheat className="h-5 w-5" aria-hidden="true" />
+                </div>
               </div>
-              <button
-                type="button"
-                onClick={() => setIsZoomMode(!isZoomMode)}
-                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono text-xs transition-colors focus-visible:ring-1 focus-visible:ring-[#D99B26] ${
-                  isZoomMode
-                    ? "bg-[#D99B26] text-[#1C1917] font-bold"
-                    : "border border-[#38332E] bg-[#1C1917] text-stone-300 hover:border-[#D99B26]"
-                }`}
-                aria-pressed={isZoomMode}
-                aria-label={isZoomMode ? "Desactivar modo textura macro 200%" : "Activar modo textura macro 200%"}
-              >
-                <ZoomIn className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{isZoomMode ? "Zoom 200% Activo" : "Ver Rugosidad 200%"}</span>
-              </button>
+
+              <h3 className="mt-6 font-serif text-xl sm:text-2xl font-bold text-[#231F1D] leading-snug">
+                Sémola de Trigo Durum + Huevos Frescos
+              </h3>
+
+              <p className="mt-3 text-sm text-[#6E6259] leading-relaxed font-sans">
+                Color dorado natural, sin colorantes artificiales. Seleccionamos sémola vítrea de alto
+                contenido proteico y la amasamos con huevo fresco pasteurizado para lograr un perfume cálido
+                y una textura firme que alimenta de verdad.
+              </p>
             </div>
 
-            {/* SVG Interactive Render with Dynamic Thickness Interpolation */}
-            <div className="relative my-8 flex min-h-[260px] sm:min-h-[300px] items-center justify-center rounded-xl bg-[#1C1917] p-4 sm:p-8 border border-stone-800/80">
-              <svg
-                viewBox="0 0 600 240"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className={`w-full max-w-lg transition-transform duration-500 ease-out ${
-                  isZoomMode ? "scale-[1.95]" : "scale-100"
-                }`}
-                style={{ transformOrigin: "center center" }}
-              >
-                <defs>
-                  <linearGradient id="strandGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#FAF6F0" stopOpacity="0.8" />
-                    <stop offset="30%" stopColor="#F5C768" stopOpacity="0.95" />
-                    <stop offset="70%" stopColor="#D99B26" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#9E6B18" stopOpacity="0.85" />
-                  </linearGradient>
+            <div className="mt-6 border-t border-[#E7DFD5] pt-4 text-xs font-serif italic text-[#8C2318]">
+              Dorado 100% natural de yema · Cero aditivos
+            </div>
+          </article>
 
-                  <filter id="strandShadow" x="-10%" y="-30%" width="120%" height="160%">
-                    <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#D99B26" floodOpacity="0.3" />
-                  </filter>
-                </defs>
+          {/* Paso 2 */}
+          <article className="group relative flex flex-col justify-between rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1]/80 p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:bg-white">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-xs font-bold tracking-widest uppercase text-[#8C2318]">
+                  Paso II · Técnica Maestra
+                </span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#F2DDD5] text-[#8C2318] shadow-xs">
+                  <Layers className="h-5 w-5" aria-hidden="true" />
+                </div>
+              </div>
 
-                {/* Background grid lines for micrometer scale */}
-                <g stroke="#38332E" strokeWidth="1" strokeDasharray="4 4" opacity="0.4">
-                  <line x1="50" y1="40" x2="550" y2="40" />
-                  <line x1="50" y1="120" x2="550" y2="120" />
-                  <line x1="50" y1="200" x2="550" y2="200" />
-                  <line x1="150" y1="20" x2="150" y2="220" />
-                  <line x1="300" y1="20" x2="300" y2="220" />
-                  <line x1="450" y1="20" x2="450" y2="220" />
-                </g>
+              <h3 className="mt-6 font-serif text-xl sm:text-2xl font-bold text-[#231F1D] leading-snug">
+                Doble Laminado en Rodillos
+              </h3>
 
-                {/* Cross section circle on left */}
-                <g transform="translate(110, 120)">
-                  <circle
-                    cx="0"
-                    cy="0"
-                    r={currentCalibre.strokeWidthPx * 1.8}
-                    fill="url(#strandGlow)"
-                    stroke="#FAF6F0"
-                    strokeWidth="1.5"
-                    filter="url(#strandShadow)"
-                    className="transition-all duration-300 ease-out"
-                  />
-                  <text
-                    x="0"
-                    y={currentCalibre.strokeWidthPx * 1.8 + 24}
-                    textAnchor="middle"
-                    fill="#D99B26"
-                    fontSize="11"
-                    fontFamily="monospace"
-                    fontWeight="bold"
-                  >
-                    Ø {currentCalibre.thicknessMm.toFixed(2)} mm
-                  </text>
-                </g>
-
-                {/* Longitudinal Strand Extrusion Curve */}
-                <path
-                  d="M200,120 C 270,80 340,160 410,100 C 460,60 510,130 550,120"
-                  stroke="url(#strandGlow)"
-                  strokeWidth={currentCalibre.strokeWidthPx}
-                  strokeLinecap="round"
-                  filter="url(#strandShadow)"
-                  className="transition-all duration-300 ease-out"
-                />
-
-                {/* Micro-texture stippling for zoom mode */}
-                {isZoomMode && (
-                  <g opacity="0.6" stroke="#FAF6F0" strokeWidth="0.8">
-                    <line x1="220" y1="116" x2="224" y2="122" />
-                    <line x1="260" y1="96" x2="265" y2="102" />
-                    <line x1="320" y1="140" x2="324" y2="146" />
-                    <line x1="380" y1="112" x2="384" y2="118" />
-                    <line x1="440" y1="78" x2="444" y2="84" />
-                    <line x1="490" y1="108" x2="494" y2="114" />
-                  </g>
-                )}
-              </svg>
+              <p className="mt-3 text-sm text-[#6E6259] leading-relaxed font-sans">
+                Estiramos la masa suavemente hoja sobre hoja, sin someterla a la fricción térmica que
+                destruye la proteína del trigo. El paso paulatino por cilindros crea una superficie
+                micro-porosa que abraza la salsa desde el primer bocado.
+              </p>
             </div>
 
-            {/* Micro-rugosity descriptor */}
-            <p className="mt-2 text-center text-xs text-stone-400 italic font-sans">
-              {currentCalibre.macroRugosity}
+            <div className="mt-6 border-t border-[#E7DFD5] pt-4 text-xs font-serif italic text-[#8C2318]">
+              Rugosidad artesanal que abraza la salsa
+            </div>
+          </article>
+
+          {/* Paso 3 */}
+          <article className="group relative flex flex-col justify-between rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1]/80 p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:bg-white">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-xs font-bold tracking-widest uppercase text-[#8C2318]">
+                  Paso III · Curado Andino
+                </span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#DCE6DF] text-[#3A6953] shadow-xs">
+                  <Wind className="h-5 w-5" aria-hidden="true" />
+                </div>
+              </div>
+
+              <h3 className="mt-6 font-serif text-xl sm:text-2xl font-bold text-[#231F1D] leading-snug">
+                Secado de Altura en Cusipata (3,300 m.s.n.m.)
+              </h3>
+
+              <p className="mt-3 text-sm text-[#6E6259] leading-relaxed font-sans">
+                El aire puro, seco y la presión de altitud del valle sellan la pasta lentamente a
+                temperatura templada. Un curado reposado que garantiza que el fideo conserve su nervio
+                y elasticidad: nunca se pega ni se rompe en la olla.
+              </p>
+            </div>
+
+            <div className="mt-6 border-t border-[#E7DFD5] pt-4 text-xs font-serif italic text-[#3A6953]">
+              Firmeza al dente insuperable en olla hirviente
+            </div>
+          </article>
+        </div>
+
+        {/* =========================================================================
+            PARTE 2: EL COMPARADOR TÁCTIL DE CALIBRES (#40, #41, #42 y #43)
+            ========================================================================= */}
+        <div className="mt-28 pt-20 border-t border-[#E7DFD5]">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E7DFD5] bg-[#F2ECE1] px-4 py-1.5 text-xs font-serif tracking-widest text-[#6E6259] shadow-xs">
+              <Scale className="h-3.5 w-3.5 text-[#8C2318]" aria-hidden="true" />
+              <span>Calibración de la Pasta Tradicional</span>
+            </div>
+
+            <h3 className="mt-4 font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#231F1D]">
+              El Arte del Laminado y <br />
+              <span className="text-[#8C2318] italic font-serif font-normal">Calibres a Escala Real</span>
+            </h3>
+
+            <p className="mt-4 text-sm sm:text-base text-[#6E6259] font-sans leading-relaxed max-w-2xl mx-auto">
+              Del grosor señorial del Tallarín Grueso #40 al hilo sutil del Cabello de Ángel #43.
+              Toque y compare el espesor real, el tiempo exacto en olla y el maridaje gastronómico ideal.
             </p>
           </div>
 
-          {/* Technical Data & Bromatological Metrics (Right - 5 cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
-            {/* Card Header */}
-            <div className="rounded-2xl border border-[#38332E] bg-[#262220] p-6 shadow-xl">
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-3xl font-bold text-[#D99B26]">
-                  {currentCalibre.code}
-                </span>
-                <span className="rounded-md border border-[#38332E] bg-[#1C1917] px-3 py-1 font-mono text-xs text-[#FAF6F0]">
-                  {currentCalibre.category}
-                </span>
+          {/* Live Region for Screen Readers (WCAG AA requirement ESC-04.08) */}
+          <div aria-live="polite" className="sr-only" data-testid="live-region-announcement">
+            Calibre seleccionado {currentCalibre.code} {currentCalibre.name}. Espesor:{" "}
+            {currentCalibre.thicknessMm.toFixed(2)} milímetros. Tiempo de cocción:{" "}
+            {currentCalibre.cookingTimeMin} minutos.
+          </div>
+
+          {/* Calibre Selector Tabs (Editorial Buttons) */}
+          <div className="mt-12 flex flex-col items-center">
+            <div
+              role="tablist"
+              aria-label="Selector de calibre de pastas"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-2xl border border-[#E7DFD5] bg-[#F2ECE1] p-2 shadow-xs w-full max-w-3xl"
+            >
+              {CALIBRES.map((calibre, index) => {
+                const isSelected = index === selectedIndex;
+                return (
+                  <button
+                    key={calibre.code}
+                    role="tab"
+                    aria-selected={isSelected}
+                    aria-controls={`panel-${calibre.numericCode}`}
+                    id={`tab-${calibre.numericCode}`}
+                    type="button"
+                    onClick={() => setCalibreSafe(index)}
+                    className={`flex flex-col items-center justify-center rounded-xl p-3 sm:p-4 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C68B2C] focus-visible:outline-none cursor-pointer ${
+                      isSelected
+                        ? "bg-[#8C2318] text-[#FBF8F3] shadow-md scale-102"
+                        : "bg-white/80 text-[#231F1D] hover:bg-white hover:text-[#8C2318]"
+                    }`}
+                  >
+                    <span className="font-serif text-lg sm:text-2xl font-bold tracking-wide">
+                      {calibre.code}
+                    </span>
+                    <span className={`text-xs font-serif font-medium mt-0.5 ${isSelected ? "text-[#FBF8F3]" : "text-[#6E6259]"}`}>
+                      {calibre.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Mobile Touch Stepper Helper */}
+            <div className="mt-3 flex items-center gap-4 text-xs font-serif text-[#6E6259] sm:hidden">
+              <button
+                type="button"
+                disabled={selectedIndex === 0}
+                onClick={() => setCalibreSafe(selectedIndex - 1)}
+                className="p-1.5 rounded-full border border-[#E7DFD5] bg-white disabled:opacity-40"
+                aria-label="Calibre anterior"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <span>Navegar con flechas o deslizar</span>
+              <button
+                type="button"
+                disabled={selectedIndex === CALIBRES.length - 1}
+                onClick={() => setCalibreSafe(selectedIndex + 1)}
+                className="p-1.5 rounded-full border border-[#E7DFD5] bg-white disabled:opacity-40"
+                aria-label="Calibre siguiente"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Main Interactive Stage & Culinary Card */}
+          <div
+            id={`panel-${currentCalibre.numericCode}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${currentCalibre.numericCode}`}
+            className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
+          >
+            {/* Left: Realistic Scale Pasta Visual Stage (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1] p-6 sm:p-8 shadow-xs relative overflow-hidden">
+              {/* Header inside Stage */}
+              <div className="flex items-center justify-between border-b border-[#E7DFD5] pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-serif text-xs font-bold uppercase tracking-wider text-[#8C2318]">
+                    Laminado al Huevo
+                  </span>
+                  <span className="text-[#C68B2C]">•</span>
+                  <span className="font-serif text-xs italic text-[#6E6259]">
+                    Comparativa a Escala Real
+                  </span>
+                </div>
+
+                {/* Macro Texture Toggle Button (ESC-04.14) */}
+                <button
+                  type="button"
+                  onClick={() => setIsZoomMode(!isZoomMode)}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-serif text-xs transition-colors focus-visible:ring-2 focus-visible:ring-[#C68B2C] cursor-pointer ${
+                    isZoomMode
+                      ? "bg-[#C68B2C] text-[#231F1D] font-bold shadow-xs"
+                      : "border border-[#E7DFD5] bg-white text-[#6E6259] hover:border-[#8C2318] hover:text-[#8C2318]"
+                  }`}
+                  aria-pressed={isZoomMode}
+                  aria-label={isZoomMode ? "Desactivar modo textura macro 200%" : "Activar modo textura macro 200%"}
+                >
+                  <ZoomIn className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{isZoomMode ? "Zoom 200% Activo" : "Ver Rugosidad 200%"}</span>
+                </button>
               </div>
 
-              <h3 className="mt-3 font-serif text-2xl font-bold text-[#FAF6F0]">
-                {currentCalibre.name}
-              </h3>
-              <p className="mt-2 text-xs text-stone-300 leading-relaxed font-sans">
-                {currentCalibre.culinaryProfile}
+              {/* Realistic Visual Stage with 4 Strands Comparative Display */}
+              <div className="relative my-6 flex min-h-[300px] flex-col items-center justify-center rounded-2xl bg-[#FBF8F3] p-6 border border-[#E7DFD5] overflow-hidden">
+                {/* Traditional Kitchen Timer Badge (Overlay Clock) */}
+                <div className="absolute top-4 right-4 z-10 flex items-center gap-2 rounded-full border border-[#E7DFD5] bg-[#F2ECE1]/90 px-3 py-1.5 shadow-xs">
+                  <Timer className="h-4 w-4 text-[#8C2318]" aria-hidden="true" />
+                  <span className="font-serif text-xs font-bold text-[#231F1D]">
+                    {currentCalibre.cookingTimeMin} min en olla
+                  </span>
+                </div>
+
+                {/* Comparative Ribbons SVG */}
+                <svg
+                  viewBox="0 0 600 240"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`w-full max-w-lg transition-transform duration-500 ease-out ${
+                    isZoomMode ? "scale-[1.85]" : "scale-100"
+                  }`}
+                  style={{ transformOrigin: "center center" }}
+                  aria-hidden="true"
+                >
+                  <defs>
+                    {/* Natural Egg-Yolk Golden Pasta Gradient */}
+                    <linearGradient id="eggYolkActive" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#E5A83B" />
+                      <stop offset="35%" stopColor="#F5C768" />
+                      <stop offset="70%" stopColor="#D99B26" />
+                      <stop offset="100%" stopColor="#B37D1C" />
+                    </linearGradient>
+
+                    <linearGradient id="eggYolkMuted" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#D9CEBA" />
+                      <stop offset="100%" stopColor="#C4B79F" />
+                    </linearGradient>
+
+                    <filter id="softPastaShadow" x="-10%" y="-30%" width="120%" height="160%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#231F1D" floodOpacity="0.12" />
+                    </filter>
+                  </defs>
+
+                  {/* Gentle Reference Measurement Lines */}
+                  <g stroke="#E7DFD5" strokeWidth="1" strokeDasharray="3 3">
+                    <line x1="60" y1="50" x2="540" y2="50" />
+                    <line x1="60" y1="120" x2="540" y2="120" />
+                    <line x1="60" y1="190" x2="540" y2="190" />
+                  </g>
+
+                  {/* 4 Comparative Pasta Strands (#40, #41, #42, #43) shown in harmonious curves */}
+                  {CALIBRES.map((cal, idx) => {
+                    const isCurrent = idx === selectedIndex;
+                    // Y baseline positions for the 4 strands
+                    const yOffset = 50 + idx * 45;
+
+                    return (
+                      <g key={cal.code} className="transition-all duration-300">
+                        {/* Cross section circle on left */}
+                        <circle
+                          cx="90"
+                          cy={yOffset}
+                          r={isCurrent ? cal.strokeWidthPx * 0.9 + 2 : cal.strokeWidthPx * 0.6}
+                          fill={isCurrent ? "url(#eggYolkActive)" : "url(#eggYolkMuted)"}
+                          stroke={isCurrent ? "#8C2318" : "#E7DFD5"}
+                          strokeWidth={isCurrent ? 2 : 1}
+                          filter="url(#softPastaShadow)"
+                        />
+
+                        {/* Calibre Code Label on left */}
+                        <text
+                          x="55"
+                          y={yOffset + 4}
+                          fill={isCurrent ? "#8C2318" : "#6E6259"}
+                          fontSize="11"
+                          fontFamily="serif"
+                          fontWeight={isCurrent ? "bold" : "normal"}
+                        >
+                          {cal.code}
+                        </text>
+
+                        {/* Strand Ribbon Wave */}
+                        <path
+                          d={`M 130,${yOffset} C 220,${yOffset - 18} 340,${yOffset + 18} 430,${yOffset - 6} C 490,${yOffset - 18} 520,${yOffset + 8} 560,${yOffset}`}
+                          stroke={isCurrent ? "url(#eggYolkActive)" : "url(#eggYolkMuted)"}
+                          strokeWidth={isCurrent ? cal.strokeWidthPx * 1.2 : cal.strokeWidthPx * 0.75}
+                          strokeLinecap="round"
+                          filter={isCurrent ? "url(#softPastaShadow)" : undefined}
+                          opacity={isCurrent ? 1 : 0.4}
+                        />
+
+                        {/* Active Indicator Pin */}
+                        {isCurrent && (
+                          <g transform={`translate(430, ${yOffset - 6})`}>
+                            <circle cx="0" cy="0" r="4.5" fill="#8C2318" />
+                            <circle cx="0" cy="0" r="8" stroke="#8C2318" strokeWidth="1" opacity="0.5" />
+                          </g>
+                        )}
+                      </g>
+                    );
+                  })}
+
+                  {/* Micro-porosity texture grains visible in zoom mode */}
+                  {isZoomMode && (
+                    <g opacity="0.7" stroke="#8C2318" strokeWidth="0.8">
+                      <line x1="220" y1="46" x2="223" y2="52" />
+                      <line x1="260" y1="92" x2="264" y2="98" />
+                      <line x1="320" y1="135" x2="323" y2="141" />
+                      <line x1="380" y1="180" x2="383" y2="186" />
+                      <line x1="440" y1="72" x2="443" y2="78" />
+                      <line x1="490" y1="115" x2="493" y2="121" />
+                    </g>
+                  )}
+                </svg>
+
+                {/* Scale Measurement Badge */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-serif text-[#6E6259]">
+                  <span>Espesor de cinta activa: <strong className="text-[#8C2318]">Cinta de {currentCalibre.thicknessMm.toFixed(2)} mm</strong></span>
+                  <span>•</span>
+                  <span>Absorción hídrica: <strong className="text-[#231F1D]">{currentCalibre.waterAbsorptionPercent}% de absorción</strong></span>
+                </div>
+              </div>
+
+              {/* Artisanal Rugosity Note */}
+              <p className="text-center text-xs text-[#6E6259] italic font-serif">
+                {currentCalibre.macroRugosity}
               </p>
+            </div>
 
-              {/* Strict Monospaced Metrics (HU-04 Scenario 2 / ESC-04.02) */}
-              <div className="mt-6 space-y-3.5 border-t border-[#38332E] pt-5 font-mono text-xs">
-                <div className="flex items-center justify-between rounded-lg bg-[#1C1917] p-3 border border-[#38332E]">
-                  <span className="flex items-center gap-2 text-stone-400">
-                    <Scale className="h-4 w-4 text-[#D99B26]" aria-hidden="true" />
-                    <span>Espesor Técnico:</span>
+            {/* Right: Culinary Profile & Technical Card (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-[#E7DFD5] bg-[#F2ECE1] p-6 sm:p-8 shadow-xs">
+              <div>
+                {/* Header Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-[#8C2318]">
+                    {currentCalibre.code}
                   </span>
-                  <strong className="text-base text-[#FAF6F0]">
-                    {currentCalibre.thicknessMm.toFixed(2)} mm
-                  </strong>
+                  <span className="rounded-full border border-[#E7DFD5] bg-[#FBF8F3] px-3.5 py-1 font-serif text-xs text-[#6E6259] shadow-xs">
+                    {currentCalibre.category}
+                  </span>
                 </div>
 
-                <div className="flex items-center justify-between rounded-lg bg-[#1C1917] p-3 border border-[#38332E]">
-                  <span className="flex items-center gap-2 text-stone-400">
-                    <Clock className="h-4 w-4 text-[#F5C768]" aria-hidden="true" />
-                    <span>Cocción al Dente:</span>
-                  </span>
-                  <strong className="text-base text-[#F5C768]">
-                    {currentCalibre.cookingTimeMin} min
-                  </strong>
+                <h4 className="mt-3 font-serif text-2xl sm:text-3xl font-bold text-[#231F1D]">
+                  {currentCalibre.name}
+                </h4>
+
+                <p className="mt-2 text-sm text-[#6E6259] leading-relaxed font-sans">
+                  {currentCalibre.culinaryProfile}
+                </p>
+
+                {/* Key Gastronomic Metrics */}
+                <div className="mt-6 space-y-3 border-t border-[#E7DFD5] pt-5">
+                  {/* Espesor */}
+                  <div className="flex items-center justify-between rounded-2xl bg-[#FBF8F3] p-3.5 border border-[#E7DFD5]">
+                    <span className="flex items-center gap-2 text-xs font-serif text-[#6E6259]">
+                      <Scale className="h-4 w-4 text-[#8C2318]" aria-hidden="true" />
+                      <span>Espesor Técnico:</span>
+                    </span>
+                    <strong className="font-serif text-base text-[#231F1D]">
+                      {currentCalibre.thicknessMm.toFixed(2)} mm
+                    </strong>
+                  </div>
+
+                  {/* Cocción al dente */}
+                  <div className="flex items-center justify-between rounded-2xl bg-[#FBF8F3] p-3.5 border border-[#E7DFD5]">
+                    <span className="flex items-center gap-2 text-xs font-serif text-[#6E6259]">
+                      <Clock className="h-4 w-4 text-[#C68B2C]" aria-hidden="true" />
+                      <span>Cocción al Dente:</span>
+                    </span>
+                    <strong className="font-serif text-base text-[#8C2318]">
+                      {currentCalibre.cookingTimeMin} min
+                    </strong>
+                  </div>
+
+                  {/* Absorción hídrica */}
+                  <div className="flex items-center justify-between rounded-2xl bg-[#FBF8F3] p-3.5 border border-[#E7DFD5]">
+                    <span className="flex items-center gap-2 text-xs font-serif text-[#6E6259]">
+                      <Droplets className="h-4 w-4 text-[#3A6953]" aria-hidden="true" />
+                      <span>Absorción Hídrica:</span>
+                    </span>
+                    <strong className="font-serif text-base text-[#3A6953]">
+                      {currentCalibre.waterAbsorptionPercent}%
+                    </strong>
+                  </div>
+
+                  {/* Rendimiento HORECA */}
+                  <div className="flex items-center justify-between rounded-2xl bg-[#FBF8F3] p-3.5 border border-[#E7DFD5]">
+                    <span className="flex items-center gap-2 text-xs font-serif text-[#6E6259]">
+                      <Utensils className="h-4 w-4 text-[#8C2318]" aria-hidden="true" />
+                      <span>Rendimiento HORECA:</span>
+                    </span>
+                    <strong className="font-serif text-xs text-[#231F1D]">
+                      1 kg rinde ~{currentCalibre.portionsPerKg} porciones
+                    </strong>
+                  </div>
                 </div>
 
-                <div className="flex items-center justify-between rounded-lg bg-[#1C1917] p-3 border border-[#38332E]">
-                  <span className="flex items-center gap-2 text-stone-400">
-                    <Droplets className="h-4 w-4 text-sky-400" aria-hidden="true" />
-                    <span>Absorción Hídrica:</span>
+                {/* Maridaje Recomendado */}
+                <div className="mt-5 rounded-2xl border border-[#E7DFD5] bg-[#FBF8F3] p-4">
+                  <span className="font-serif text-xs font-bold uppercase tracking-wider text-[#8C2318] block">
+                    Maridaje Tradicional Recomendado
                   </span>
-                  <strong className="text-base text-emerald-400">
-                    {currentCalibre.waterAbsorptionPercent}%
-                  </strong>
-                </div>
-
-                <div className="flex items-center justify-between rounded-lg bg-[#1C1917] p-3 border border-[#38332E]">
-                  <span className="flex items-center gap-2 text-stone-400">
-                    <Utensils className="h-4 w-4 text-[#B55327]" aria-hidden="true" />
-                    <span>Rendimiento HORECA:</span>
-                  </span>
-                  <strong className="text-xs text-[#FAF6F0]">
-                    1 kg rinde ~{currentCalibre.portionsPerKg} porciones
-                  </strong>
+                  <p className="mt-1.5 text-xs text-[#6E6259] font-sans leading-relaxed">
+                    {currentCalibre.recommendedSauces}
+                  </p>
                 </div>
               </div>
 
-              {/* Recommended Sauce Pairing */}
-              <div className="mt-5 rounded-lg border border-[#38332E] bg-[#1C1917]/70 p-3.5">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#D99B26] block">
-                  Maridaje y Densidad de Salsa Recomendada
-                </span>
-                <p className="mt-1 text-xs text-stone-300 font-sans leading-snug">
-                  {currentCalibre.recommendedSauces}
-                </p>
+              {/* Footer Stamp */}
+              <div className="mt-6 pt-4 border-t border-[#E7DFD5] flex items-center justify-between text-xs font-serif text-[#6E6259]">
+                <span>Retención elástica: <strong className="text-[#231F1D]">{currentCalibre.elasticRetentionPercent}%</strong></span>
+                <span className="text-[#8C2318] italic">Planta Km 76 Cusipata</span>
               </div>
             </div>
           </div>
